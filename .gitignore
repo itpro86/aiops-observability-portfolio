@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+*.env
+
+# Docker volumes/data
+volumes/
+data/
+
+# System files
+.DS_Store
+Thumbs.db
