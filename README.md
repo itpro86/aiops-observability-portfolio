@@ -36,6 +36,8 @@ A hands-on AIOps lab built on a Synology NAS that combines open-source observabi
 
 ---
 
+## 🔵 Full Enterprise Architecture
+
 ```mermaid
 flowchart LR
   A[PingApp] --> B[OpenTelemetry Collector]
@@ -50,3 +52,24 @@ flowchart LR
   Grafana -->|alerts| Slack
   Grafana -->|alerts| Teams
   Dynatrace -->|problems| ServiceNow
+```
+
+## 🔔 Incident Lifecycle Flow
+
+```mermaid
+sequenceDiagram
+  participant App as "App / Service"
+  participant Detect as "Monitoring (Grafana/Dynatrace/Splunk)"
+  participant Chat as "ChatOps (Slack/Teams)"
+  participant ITSM as "ServiceNow"
+  participant Auto as "Auto-Remediation (FastAPI Listener)"
+
+  App->>Detect: Error spike / high latency / log pattern
+  Detect->>Chat: Send alert (summary + link to dashboard)
+  Detect->>ITSM: Create Incident (webhook)
+  Chat->>Auto: (Optional) Command/Button triggers remediation
+  Auto->>App: Restart container / scale deployment
+  Auto->>ITSM: Update Incident with remediation note
+  Detect->>Chat: Resolution / Recovery notification
+```
+
