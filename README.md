@@ -31,7 +31,6 @@ evolves.
 ---
 
 ## 📂 Project Structure
-- 
 - **compose/** → Docker Compose stacks (baseline, enterprise, overrides)
 - **grafana/** → Provisioning (dashboards, datasources, alerting rules)
 - **prometheus/** → Prometheus configs, scrape rules, recording rules
